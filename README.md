@@ -1,15 +1,15 @@
-Welcome to your new dbt project!
+##Project Outline
+This project is intended to build an end-to-end data pipeline of PV Rooftop data to visualize the zip codes with the highest density of buildings suitable for solar panels.
 
-### Using the starter project
+*GCP Infrastructure built using Terraform
+*Docker container runs Airflow
+*Extract and load data using Airflow
+*Store data in GCP and query using BigQuery
+*Transformation and modeling on BigQuery with DBT
+*Visualize data on a dashboard from BigQuery using DataStudio
 
-Try running the following commands:
-- dbt run
-- dbt test
+Each step listed above can be found in the corresponding folders.
 
+##The Dataset
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [dbt community](http://community.getbdt.com/) to learn from other analytics engineers
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+The National Renewable Energy Laboratory's (NREL) PV Rooftop Database (PVRDB) is a lidar-derived, geospatially-resolved dataset of suitable roof surfaces and their PV technical potential for 128 metropolitan regions in the United States. The source lidar data and building footprints were obtained by the U.S. Department of Homeland Security Homeland Security Infrastructure Program for 2006-2014. Using GIS methods, NREL identified suitable roof surfaces based on their size, orientation, and shading parameters Gagnon et al. (2016). Standard 2015 technical potential was then estimated for each plane using NREL's System Advisory Model.
