@@ -2,7 +2,7 @@ version: 2
 
 sources:
     - name: staging_sys1430
-      database: dezcamp-project-57000 
+      database: oedi-project 
       schema: pvsys1430
 
       tables:
@@ -27,16 +27,11 @@ sources:
         - name: pvsys1430_01192015
         - name: pvsys1430_01202015
         - name: pvsys1430_01212015
-        - name: pvsys1430_01222015
-        - name: pvsys1430_01232015
-        - name: pvsys1430_01242015
-        - name: pvsys1430_01252015
-        - name: pvsys1430_01262015
-        - name: pvsys1430_01272015
+
 
 
     - name: staging_sys1431
-      database: dezcamp-project-57000 
+      database: oedi-project
       schema: pvsys1431
 
       tables:
@@ -47,8 +42,7 @@ sources:
         - name: pvsys1431_01052015
         - name: pvsys1431_01062015
         - name: pvsys1431_01072015
-        - name: pvsys1431_01082015
-        - name: pvsys1431_01092015
+
 
 
 
