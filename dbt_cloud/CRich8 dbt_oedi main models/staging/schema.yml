@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: staging
+    database: oedi-project
+    schema: pv_rooftop_data_all 
+
+    tables:
+      - name: buildings
+      - name: developable_planes
+
+models:
+    - name: stg_buildings
+    - name: stg_developable_planes

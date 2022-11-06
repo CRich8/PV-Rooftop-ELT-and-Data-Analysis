@@ -1,0 +1,6 @@
+version: 2
+
+models:
+    - name: fact_building_rooftop
+    - name: suitable_rooftop_city
+    - name: city_building_rooftop
