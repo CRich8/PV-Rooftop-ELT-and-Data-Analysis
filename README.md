@@ -1,5 +1,5 @@
 ## Project Outline
-This project is intended to build an end-to-end data pipeline of PV Rooftop data to visualize the zip codes with the highest density of buildings suitable for solar panels.
+This project is intended to build an end-to-end data pipeline of PV Rooftop data to visualize the cities with the highest developable area for rooftop solar panels.
 
 * GCP Infrastructure built using Terraform
 * Docker container runs Airflow
