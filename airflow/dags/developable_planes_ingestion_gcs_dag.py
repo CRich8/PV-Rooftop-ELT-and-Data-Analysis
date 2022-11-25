@@ -1,17 +1,16 @@
+# FIXME: This script needs a docstring explaining what it does/how it's used
 import os
-import logging
+# Remove unused imports
 
 from airflow import DAG
-from airflow.utils.dates import days_ago
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
+from airflow.utils.dates import days_ago
 
 from google.cloud import storage
-from airflow.providers.google.cloud.operators.bigquery import BigQueryCreateExternalTableOperator
-import pyarrow.csv as pv
-import pyarrow.parquet as pq
+# Remove unused imports
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 PROJECT_ID = os.environ.get("GCP_PROJECT_ID")
 BUCKET = os.environ.get("GCP_GCS_BUCKET")
@@ -20,7 +19,9 @@ AIRFLOW_HOME = os.environ.get("AIRFLOW_HOME", "/opt/airflow/")
 
 BIGQUERY_DATASET = os.environ.get("BIGQUERY_DATASET", 'pv_rooftop_data_all')
 
+
 def upload_to_gcs(bucket, object_name, local_file):
+    # FIXME: Docstring should define what the function does. You can exclude `return` altogether here
     """
     Ref: https://cloud.google.com/storage/docs/uploading-objects#storage-upload-object-python
     :param bucket: GCS bucket name
@@ -28,6 +29,8 @@ def upload_to_gcs(bucket, object_name, local_file):
     :param local_file: source path & file-name
     :return:
     """
+
+    # Not going to redo what I did here on the other file with creating globals, but you should follow that pattern
     storage.blob._MAX_MULTIPART_SIZE = 5 * 1024 * 1024  # 5 MB
     storage.blob._DEFAULT_CHUNKSIZE = 5 * 1024 * 1024  # 5 MB
 
@@ -55,7 +58,7 @@ with DAG(
     dagrun_timeout=timedelta(minutes=120),
     concurrency=6
 ) as dag:
-
+    # See other comment about these in-function imports
     import requests
     from bs4 import BeautifulSoup
     import re
@@ -64,6 +67,9 @@ with DAG(
     soup = BeautifulSoup(reqs.text, 'html.parser')
     urls = []
     count = 0
+
+    # OK I can see that this file is basically identical to the other ingestion gcs dag, so consult my comment
+    # instructions and the changes in that one for this too
     for link in soup.find_all('a'):
         url = 'https://data.openei.org/'+link.get('href')
         reqs = requests.get(url)
@@ -89,8 +95,6 @@ with DAG(
 
     city_year_dict = {urls[i]: city_year_list[i] for i in range(len(urls))}
 
-
-
     for url, city_year in city_year_dict.items():
         OUTPUT_FILE_TEMPLATE = AIRFLOW_HOME + f"/output_developable_planes_{city_year}.parquet"
         TABLE_NAME = f"developable_planes_{city_year}"
@@ -114,6 +118,10 @@ with DAG(
             task_id=f"rm_developable_planes_{city_year}_task",
             bash_command=f"rm {OUTPUT_FILE_TEMPLATE}"
         )
+
+        # FIXME: It's unclear to me what's happening here. the `>>` operator is a bitwise operator, but this doesn't _look_
+        #  like a bitwise operation to me, and my IDE is calling it out as an operation with no used effect. I'm assuming
+        #  it does something otherwise you wouldn't have put it here but I'm curious
         download_dataset_task >> local_to_gcs_task >> rm_task
 
 

@@ -1,10 +1,12 @@
+# FIXME: This script needs a docstring explaining what it does/how it's used
 import os
-import logging
+# Remove unused imports
 
 from airflow import DAG
 from airflow.utils.dates import days_ago
-from airflow.providers.google.cloud.operators.bigquery import BigQueryCreateExternalTableOperator, BigQueryInsertJobOperator
-from airflow.providers.google.cloud.transfers.gcs_to_gcs import GCSToGCSOperator
+from airflow.providers.google.cloud.operators.bigquery \
+    import BigQueryCreateExternalTableOperator, BigQueryInsertJobOperator
+# Remove unused imports
 
 PROJECT_ID = os.environ.get("GCP_PROJECT_ID")
 BUCKET = os.environ.get("GCP_GCS_BUCKET")
@@ -63,4 +65,7 @@ with DAG(
         }
     )
 
+    # FIXME: It's unclear to me what's happening here. the `>>` operator is a bitwise operator, but this doesn't _look_
+    #  like a bitwise operation to me, and my IDE is calling it out as an operation with no used effect. I'm assuming
+    #  it does something otherwise you wouldn't have put it here but I'm curious
     bigquery_external_table_task >> bq_create_partitioned_table_job
