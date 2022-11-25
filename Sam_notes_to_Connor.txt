@@ -1,0 +1,20 @@
+Connor,
+
+Thanks for giving me a chance to read your code! LMK if any of my comments or changes are unclear in the code. You can take or leave them.
+
+Some general thoughts:
+
+1) While Python uses dynamic typing (i.e., a variable can be a string one minute and an Int the next), in Python 3 they introduced the ability to define variable types and return types, which allows the compiler to warn you as you are writing code if you are misusing a variable, or passing a value of the wrong type into a function call. It’s not a requirement of the language but it makes your code stronger. You can declare a variable to be of a specific type with this format:
+
+my_string: str = "I am a string"
+
+And you can define that a function returns a particular type by doing:
+
+def gimme_a_string() -> str:
+    return "Return value"
+
+2) Make sure you are using a good IDE that supports the language(s) you’re coding in. For example, I opened your Python files in PyCharm, which instantly showed me a few things wrong with individual files such as unused imports, incorrect spacing, etc.
+
+3) If you haven’t, you may want to learn about “complexity,” “Big-O” notation, and algorithms. It’s of particular use to notice when you’re setting up multiple loops in a function. Loops do a lot of work and take a lot of time (relatively speaking), so anything you can do to reduce the number of loops you run is good form. You don’t have any nested loops here, though, so realistically your loops aren’t that “expensive” (meaning costly in time and/or memory usage), it’s just always good form to do your work as efficiently as possible and create as few unnecessary variables as possible without producing code that’s difficult to read or understand
+
+4) IMO the README should provide clear instructions for how to use all of your code. For me as an outsider it’s unclear how I would actually use this if I wanted to do reproduce your results and/or modify anything.
